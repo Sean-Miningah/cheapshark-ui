@@ -1,10 +1,11 @@
-import { Deal } from '../types'
+import { Deal, GameData } from '../types'
+
+const API_URL: string = 'https://www.cheapshark.com/api/1.0/deals'
 
 async function fetchDataFromAPI(): Promise<Deal[]> {
-    const apiUrl = 'https://www.cheapshark.com/api/1.0/deals'
 
     try {
-        const response = await fetch(apiUrl)
+        const response = await fetch(API_URL)
         const data = await response.json()
         return data
     } catch (error) {
@@ -13,4 +14,16 @@ async function fetchDataFromAPI(): Promise<Deal[]> {
     }
 }
 
-export { fetchDataFromAPI }
+async function dealLookUp(dealID: string): Promise<GameData> {
+    try {
+        const response = await fetch(`${API_URL}?id=${dealID}`)
+        const data = await response.json()
+        return data
+
+    } catch (error) {
+        console.error('Error fetching data:', error)
+        throw error
+    }
+}
+
+export { fetchDataFromAPI, dealLookUp, API_URL }

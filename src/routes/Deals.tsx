@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import GameCard from "@/components/GameCard";
 import { fetchDataFromAPI } from "../api/deals";
-import { Deal } from "../types";
+import { Deal } from "@/types";
+
 
 export default function Deals() {
     const [deals, setDeals] = useState<Deal[]>([]);
@@ -17,10 +21,9 @@ export default function Deals() {
             {/* Render your deals here */}
             <ul>
                 {deals.map((deal: Deal) => (
-                    <li key={deal.dealID}>
-                        <h2>{deal.title}</h2>
-                        <p>{deal.normalPrice}</p>
-                    </li>
+                    <Link key={deal.dealID} to={`/deal/${deal.dealID}`}>
+                        <GameCard deal={deal} />
+                    </Link>
                 ))}
             </ul>
         </div>
