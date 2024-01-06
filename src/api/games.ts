@@ -24,4 +24,15 @@ async function fetchGameLookup(gameID: string): Promise<GameLookUpData> {
     }
 }
 
-export { fetchGames, fetchGameLookup, GAMES_API}
+async function fetchMultipleGameLookup(gameIDs: string[]): Promise<GameLookUpData[]> {
+    try {
+        const response = await fetch(`${GAMES_API}?ids=${gameIDs}`)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error fetching data:', error)
+        throw error
+    }
+}
+
+export { fetchGames, fetchGameLookup, fetchMultipleGameLookup, GAMES_API}

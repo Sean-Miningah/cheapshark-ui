@@ -1,11 +1,9 @@
 import { 
     Card, 
     CardHeader, 
-    CardTitle, 
-    CardDescription, 
-    CardContent, 
-    CardFooter
-} from "./ui/card";
+    Heading, 
+    Image,
+} from "@chakra-ui/react";
 
 import { Deal } from "@/types"
 
@@ -15,22 +13,20 @@ type Props = {
 
 function GameCard({ deal }: Props) {
     return (
-        <Card>
+        <Card maxW="sm">
+            <Image 
+                src={deal.thumb} 
+                alt={deal.title} 
+                borderRadius="lg" 
+                // boxSize='200px' 
+                minW="80%"
+                minH="120px"
+                maxH="160px"
+                objectFit="cover"
+                />
             <CardHeader>
-                <CardTitle>{deal.title}</CardTitle>
-                <CardDescription>{deal.lastChange}</CardDescription>
+                <Heading size="md">{deal.title}</Heading>
             </CardHeader>
-            <CardContent>
-                <p>price : <strong>{deal.salePrice}</strong></p>
-                <p>normal price: <div>{deal.normalPrice}</div></p>
-                <p>savings: <div>{deal.savings}</div></p>
-                <p>is onsale: <div>{deal.isOnSale}</div></p>
-            </CardContent>
-            <CardFooter>
-                <p>release date : <div>{deal.releaseDate}</div></p>
-                <p>last change : <div>{deal.lastChange}</div></p>
-            </CardFooter>
-
         </Card>
     )
 }

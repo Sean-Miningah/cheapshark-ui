@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Heading } from "@chakra-ui/react";
 
 import GameCard from "@/components/GameCard";
 import { fetchDataFromAPI } from "../api/deals";
@@ -16,16 +17,16 @@ export default function Deals() {
     }, []);
     
     return (
-        <div>
-            <h1>Deals</h1>
+        <div className="w-full py-4">
+            <Heading>Deals</Heading>
             {/* Render your deals here */}
-            <ul>
+            <div className="grid gap-2 grid-cols-2 md:grid-cols-3">
                 {deals.map((deal: Deal) => (
-                    <Link key={deal.dealID} to={`/deal/${deal.dealID}`}>
+                    <Link key={deal.dealID} to={`/deal/${deal.dealID}`} className="w-full">
                         <GameCard deal={deal} />
                     </Link>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

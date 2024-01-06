@@ -4,15 +4,18 @@ function Layout() {
     return (
         <div>
             <nav>
-                <ul>
-                    <li><Link to="/">Deals</Link></li>
-                    <li><Link to="/about">About</Link></li>
+                <ul className="flex flex-row justify-end mx-3 my-2 space-x-6">
+                    <li><Link to="/" className="text-4xl font-semibold text hover:text-amber-600">Deals</Link></li>
+                    <li><Link to="/games" className="text-4xl font-semibold text hover:text-amber-600">Games</Link></li>
+                    <li><Link to="/about" className="text-4xl font-semibold text hover:text-amber-600">About</Link></li>
                 </ul>
             </nav>
 
             <hr />
 
-            <Outlet />
+            <div className="mx-4 my-2">
+                <Outlet />
+            </div>
         </div>
     )
 }
